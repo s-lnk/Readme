@@ -26,10 +26,15 @@ userlist_deny=NO
 ### Create FTP user
 ```
 sudo adduser aloka
+sudo passwd awsftpuser
 echo "aloka" | sudo tee -a /etc/vsftpd.userlist
 ```
 Check if You can connect locally:
 ```
 ftp -p <public_ip>
 ```
-
+### Set user permissions
+```
+sudo chown USER_NAME:USER_NAME /home/USER_NAME/FTP
+sudo chmod 755 /home/USER_NAME/FTP
+```
