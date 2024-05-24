@@ -15,3 +15,7 @@ List running services
 '''
 systemctl list-units --type=service --state=active
 '''
+Add read/write rights to folder
+'''
+sudo chmod o+w ./storage/ -R
+'''

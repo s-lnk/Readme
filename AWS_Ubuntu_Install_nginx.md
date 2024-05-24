@@ -1,40 +1,49 @@
 ## AWS Ubuntu install nginx server
 
+### Install zip and unpack archive
+sudo apt-get install unzip
+unzip file.zip
 
-### Install and configure vsftpd
-```
+Install nginx
+sudo apt-get install nginx
+Install php
+sudo apt-get install php8.1-fpm
+Add repo for PHP exts
+'''
+sudo add-apt-repository ppa:ondrej/php
 sudo apt-get update
-sudo apt-get install vsftpd
-sudo nano /etc/vsftpd.conf
-```
-Make the following edits:
-```
-listen=YES
-#listen_ipv6=YES
-anonymous_enable=no
-write_enable=YES
-connect_from_port_20=YES
-pasv_enable=YES
-pasv_min_port=1024
-pasv_max_port=1048
-pasv_address=54.165.49.1
-port_enable=YES
-userlist_enable=YES
-userlist_file=/etc/vsftpd.userlist
-userlist_deny=NO
-```
-### Create FTP user
-```
-sudo adduser aloka
-sudo passwd awsftpuser
-echo "aloka" | sudo tee -a /etc/vsftpd.userlist
-```
-Check if You can connect locally:
-```
-ftp -p <public_ip>
-```
-### Set user permissions
-```
-sudo chown USER_NAME:USER_NAME /home/USER_NAME/FTP
-sudo chmod 755 /home/USER_NAME/FTP
-```
+sudo apt-get install php-curl
+sudo service apache2 restart
+'''
+
+sudo apt-get install imagemagick
+
+sudo apt-get install php-mysql
+sudo apt-get install php-xml
+sudo apt-get install curl
+sudo apt-get install php-intl
+sudo apt-get install php8.1-mbstring
+sudo apt-get install php8.1-bcmath
+sudo apt-get install php8.1-gd
+sudo apt-get install php8.1-imagick
+sudo apt-get install php8.1-memcached
+sudo apt-get install php8.1-zip
+sudo apt-get install php8.1-curl
+
+
+In /etc/php/8.1/fpm/php.ini
+
+Enable and set 
+max_input_vars = 5000
+memory_limit = 256M
+post_max_size = 128M
+upload_max_filesize = 128M
+Enable all other required modules
+
+Set folders writeable
+sudo chmod 777 /var/www/gate7.ee/var/cache
+
+
+Restart Nginx, php
+sudo systemctl restart nginx
+sudo systemctl restart php8.1-fpm

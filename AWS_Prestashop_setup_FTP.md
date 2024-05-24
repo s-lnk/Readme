@@ -31,9 +31,6 @@ sudo passwd awsftpuser
 echo "aloka" | sudo tee -a /etc/vsftpd.userlist
 ```
 Check if You can connect locally:
-```
-ftp -p <public_ip>
-```
 ### Set user permissions
 ```
 sudo chown USER_NAME:USER_NAME /home/USER_NAME/FTP
