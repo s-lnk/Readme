@@ -2,7 +2,7 @@
 
 Set VAT rate, domain name, update DB tables prefixes and shop language prefix (et)
 
-'''
+```
 use d118895_gate7;
 SET @VAT_MULTIPLICATOR = 1.22; # Set VAT rate multiplicator for country of Your residence
 SET @SHOP_DOMAIN = 'https://gate7.ee/'; # Set domain name
@@ -28,6 +28,5 @@ LEFT JOIN ps_stock_available stock ON (stock.id_product = `p`.id_product AND sto
 WHERE (product_shop.`active` = 1) AND (product_shop.`visibility` IN ("both", "catalog")) AND 
 (EXISTS(SELECT 1 FROM `ps_category_product` cp JOIN `ps_category_group` cg ON (cp.id_category = cg.id_category AND cg.`id_group` =1) WHERE cp.`id_product` = p.`id_product`))
 ORDER BY product_shop.`date_add` DESC
-
-'''
+```
 
